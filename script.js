@@ -50,48 +50,15 @@ let products = [
 ]
 
 window.addEventListener("load", ()=>{
-    console.log("ONLINE");
-    console.log("The page is LOADED!")
-    mainContent.innerHTML = `<div class="p-5 mb-4 bg-light rounded-3">
-                                <div class="container-fluid py-5">
-                                <h1 class="display-5 fw-bold">Home Page</h1>
-                                <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-                                <button class="btn btn-primary btn-lg" type="button">Movie Store</button>
-                                </div>
-                            </div>
-        `;
+    HomeGenerate();
 });
 
 homeBtn.addEventListener("click", ()=>{
-
-    console.log("Home Button Clicked!")
-    mainContent.innerHTML = "<h1>This is my Home Page</h1>"
-    
+    HomeGenerate();    
 })
 
 productsBtn.addEventListener("click", ()=>{
-    console.log("Products Button Clicked!")
-    mainContent.innerHTML = "<h1>This is my Products Page</h1>"
-    
-    
-    products.forEach(p => {
-        console.log(p.Title);
-        let homeTemplate = `
-        <div class="card" style="min-width: 18rem; margin: 0 13px 10px 0">
-        <input type="hidden" value="${p.MovieId}">
-            <img src="${p.ImgUrl}" class="card-img-top" alt="${p.Title}">
-            <div class="card-body">
-            <h5 class="card-title">${p.Title}</h5>
-            <p class="card-text">${p.Synopsis}</p>
-            <a href="#" class="btn btn-primary">More Info...</a>
-            </div>
-        </div>
-    `
-    productsDeck.insertAdjacentHTML("beforeend", homeTemplate);
-    mainContent.appendChild(productsDeck);
-    })
-
-    
+    ProductsGenerate();
 })
 
 contactBtn.addEventListener("click", ()=>{
@@ -103,3 +70,64 @@ aboutBtn.addEventListener("click", ()=>{
     console.log("About Button Clicked!")
     mainContent.innerHTML = "<h1>This is my About Page</h1>"
 })
+
+
+
+function ShowDetails(id)
+{
+    console.log("Details ", id);
+    products.forEach(p =>{
+        if(p.MovieId == id){
+            mainContent.innerHTML = `
+            <div class="card" style="max-width: 18rem; margin: 0 13px 10px 0">
+            <input type="hidden" value="${p.MovieId}">
+                <img src="${p.ImgUrl}" class="card-img-top" alt="${p.Title}">
+                <div class="card-body">
+                <h5 class="card-title">${p.Title}</h5>
+                <p class="card-text">${p.Synopsis}</p>
+                <a href="#" class="btn btn-primary" onclick="BackToProducts()">Back</a>
+                </div>
+            </div>
+            `
+        }
+    })
+}
+
+function BackToProducts(){
+    ProductsGenerate()
+}
+
+
+function HomeGenerate() {
+    mainContent.innerHTML = "";
+    mainContent.innerHTML = `<div class="p-5 mb-4 bg-light rounded-3">
+                                <div class="container-fluid py-5">
+                                <h1 class="display-5 fw-bold">Home Page</h1>
+                                <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+                                <button class="btn btn-primary btn-lg" type="button">Movie Store</button>
+                                </div>
+                            </div>
+        `;
+}
+
+function ProductsGenerate() {
+    mainContent.innerHTML = "";
+    productsDeck.innerHTML = "";
+    products.forEach(p => {
+        console.log(p.Title);
+        let productsTemplate = `
+        <div class="card" style="min-width: 18rem; margin: 0 13px 10px 0">
+        <input type="hidden" value="${p.MovieId}">
+            <img src="${p.ImgUrl}" class="card-img-top" alt="${p.Title}">
+            <div class="card-body">
+            <h5 class="card-title">${p.Title}</h5>
+            <p class="card-text">${p.Synopsis}</p>
+            <a href="#" class="btn btn-primary" onclick="ShowDetails(${p.MovieId})">More Info...</a>
+            </div>
+        </div>
+    `;
+        productsDeck.insertAdjacentHTML("beforeend", productsTemplate);
+        
+    });
+    mainContent.appendChild(productsDeck);
+}
