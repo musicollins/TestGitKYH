@@ -8,6 +8,7 @@ let mainContent = document.querySelector(".main");
 
 window.addEventListener("load", ()=>{
     console.log("ONLINE");
+    mainContent.innerHTML = "<h1>This is my Home Page</h1>"
 });
 
 homeBtn.addEventListener("click", ()=>{
@@ -20,4 +21,8 @@ productsBtn.addEventListener("click", ()=>{
 
 contactBtn.addEventListener("click", ()=>{
     mainContent.innerHTML = "<h1>This is my Contact Page</h1>"
+})
+
+aboutBtn.addEventListener("click", ()=>{
+    mainContent.innerHTML = "<h1>This is my About Page</h1>"
 })
