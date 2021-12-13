@@ -49,9 +49,6 @@ let products = [
 
 ]
 
-
-
-
 window.addEventListener("load", ()=>{
     console.log("ONLINE");
     console.log("The page is LOADED!")
