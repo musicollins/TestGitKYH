@@ -1,0 +1,5 @@
+# Local Implementation Details
+NotToPush.js
+
+# node_modules not to be pushed
+node_modules/
