@@ -5,6 +5,9 @@ let contactBtn = document.querySelector(".contact-content");
 let aboutBtn = document.querySelector(".about-content");
 let mainContent = document.querySelector(".main");
 
+let productsDeck = document.createElement("div");
+productsDeck.classList.add("card-group");
+
 let products = [
     {
         MovieId: 1,
@@ -53,12 +56,12 @@ window.addEventListener("load", ()=>{
     console.log("ONLINE");
     console.log("The page is LOADED!")
     mainContent.innerHTML = `<div class="p-5 mb-4 bg-light rounded-3">
-                            <div class="container-fluid py-5">
-                            <h1 class="display-5 fw-bold">Home Page</h1>
-                            <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-                            <button class="btn btn-primary btn-lg" type="button">Movie Store</button>
+                                <div class="container-fluid py-5">
+                                <h1 class="display-5 fw-bold">Home Page</h1>
+                                <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+                                <button class="btn btn-primary btn-lg" type="button">Movie Store</button>
+                                </div>
                             </div>
-                        </div>
         `;
 });
 
@@ -72,21 +75,26 @@ homeBtn.addEventListener("click", ()=>{
 productsBtn.addEventListener("click", ()=>{
     console.log("Products Button Clicked!")
     mainContent.innerHTML = "<h1>This is my Products Page</h1>"
-
+    
+    
     products.forEach(p => {
         console.log(p.Title);
-    })
-
-    let homeTemplate = `
-        <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+        let homeTemplate = `
+        <div class="card" style="min-width: 18rem; margin: 0 13px 10px 0">
+        <input type="hidden" value="${p.MovieId}">
+            <img src="${p.ImgUrl}" class="card-img-top" alt="${p.Title}">
             <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">${p.Title}</h5>
+            <p class="card-text">${p.Synopsis}</p>
+            <a href="#" class="btn btn-primary">More Info...</a>
             </div>
         </div>
     `
+    productsDeck.insertAdjacentHTML("beforeend", homeTemplate);
+    mainContent.appendChild(productsDeck);
+    })
+
+    
 })
 
 contactBtn.addEventListener("click", ()=>{
