@@ -30,5 +30,6 @@
         11. Google everything, brainstorm and if you don't find the answer ASK RAFAEL!!! 
         12. Challange! When all Products are rendered in the Products Page create a button for each
             product with the name Details, the Details Page will only show info about the specific Movie.
-            Use the MovieId Key-Value Pair
+            Use the MovieId Key-Value Pair => Bootstrap Card: https://getbootstrap.com/docs/5.1/components/card/
+
      -->
